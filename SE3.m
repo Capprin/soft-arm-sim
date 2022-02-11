@@ -1,3 +1,5 @@
+% SE(3) related functions and definitions
+% assumes zyx rotation matrix
 function group = SE3
     % dimensionality
     group.dim = 6;
@@ -12,4 +14,5 @@ function group = SE3
                             g_dot(6) 0 -g_dot(4) g_dot(2);...
                             -g_dot(5) g_dot(4) 0 g_dot(3);...
                             0 0 0 0];
+    % TODO: add mat->vec
 end
