@@ -27,7 +27,7 @@ function [J_cell, trans] = link_jacobian(group, geometry, joint_angles, link_pro
             h = eye(size(g));
             for k = j:i
                 % use partial link if at end
-                if j == i
+                if k == i
                     h = h * joint_trans{k} * link_trans{k};
                 else
                     h = h * joint_trans{k} * geometry.links{k};
