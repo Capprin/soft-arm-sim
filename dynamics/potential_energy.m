@@ -1,5 +1,5 @@
 % computes potential energy term
-function PE = potential(K_mat, gamma, link_masses, J_links, q)
+function PE = potential_energy(K_mat, gamma, link_masses, J_links, q)
     % get contribution of springs
     kt = K_mat * q;
     % get contribution of heights
