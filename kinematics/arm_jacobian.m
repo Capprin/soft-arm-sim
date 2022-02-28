@@ -25,7 +25,7 @@ function [J_cell, trans] = arm_jacobian(group, geometry, joint_angles)
             % get Jacobian column as a transform
             J_mat = g * geometry.joints{j} * h;
             % convert to vector
-            J_vec = group.g_vec(J_mat);
+            J_vec = group.g_dot(J_mat);
             J_cell{i}(:,j) = J_vec;
             % update g
             trans{j} = g;

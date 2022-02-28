@@ -1,6 +1,6 @@
 % produces Jacobian of specified points along each link
 % similar to arm_jacobian.m, with additional partial-link logic
-function [J_cell, trans] = link_jacobian(group, geometry, joint_angles, link_props)
+function [J_cell, trans] = link_jacobian(group, geometry, link_props, joint_angles)
     % setup
     J_cell = cell(size(link_props));
     trans = cell(size(link_props));
@@ -36,7 +36,7 @@ function [J_cell, trans] = link_jacobian(group, geometry, joint_angles, link_pro
             % get Jacobian column as a transform
             J_mat = g * geometry.joints{j} * h;
             % convert to vector
-            J_vec = group.g_vec(J_mat);
+            J_vec = group.g_dot(J_mat);
             J_cell{i}(:,j) = J_vec;
             % update g
             trans{j} = g * joint_trans{j} * link_trans{j};
