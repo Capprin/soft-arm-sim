@@ -12,7 +12,7 @@ function [J_cell, trans] = arm_jacobian(group, geometry, joint_angles)
     end
     % compute J of each joint
     for i = 1:numel(J_cell)
-        J_cell{i} = zeros(group.dim, length(joint_angles));
+        J_cell{i} = sym(zeros(group.dim, length(joint_angles)));
         % keep track of current location
         g = eye(size(group.g_mat([0 0 0 0 0 0])));
         % columns of J are contributions from ea. prev. joint

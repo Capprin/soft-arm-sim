@@ -18,7 +18,7 @@ function [J_cell, trans] = link_jacobian(group, geometry, link_props, joint_angl
     end
     % compute J at each partial link
     for i = 1:numel(link_props)
-        J_cell{i} = zeros(group.dim, length(joint_angles));
+        J_cell{i} = sym(zeros(group.dim, length(joint_angles)));
         % keep track of current location
         g = eye(size(group.g_mat([0 0 0 0 0 0])));
         % columns of J are contributions from ea. prev. joint
