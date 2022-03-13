@@ -5,5 +5,5 @@ function I = inertia_tensor(length, mass, radius)
     Iyy = 1/12*mass*(3*radius^2 + length^2);
     Izz = Iyy;
     % compute tensor
-    I = [Ixx 0 0; 0 Iyy 0; 0 0 Izz];
+    I = [Izz 0 0; 0 Iyy 0; 0 0 Ixx];
 end

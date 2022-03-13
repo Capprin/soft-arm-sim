@@ -1,4 +1,9 @@
 function geom = arm_geometry(group, link_axes, link_lengths, joint_axes)
+    %% setup
+    % save inputs
+    geom.link_axes = link_axes;
+    geom.link_lengths = link_lengths;
+    geom.joint_axes = joint_axes;
     % axis mappings
     link_axis = struct('x', [1 0 0 0 0 0],...
                        'y', [0 1 0 0 0 0],...

@@ -26,11 +26,11 @@ function d_beta_stack = dynamics_fun(arm, control, beta_stack, t)
     A = [[eye(n_params); zeros(n_params)], -M_beta];
     % eom; produces motor torques and spring accels
     alpha_ddot = alpha_stack((2*n_params+1):end);
-    res_stack = A\(C + PE + M_alpha*alpha_ddot); %inv(A)*(...)
+    res_stack = A\(C + PE + M_alpha*alpha_ddot); %inv(A)*(...) 
 
     %% generate output
-    d_beta_stack = [beta_stack((2*n_params+1):3*n_params);...%beta vel
-                    flipud(res_stack);...%originally [alpha_torque;beta_accel]
+    d_beta_stack = [beta_stack((n_params+1):2*n_params);...%beta vel
+                    res_stack(4:6);res_stack(1:3);...%originally [alpha_torque;beta_accel]
                     zeros(n_params,1)];%set rotatum (time derivative) to zero
     d_beta_stack = double(d_beta_stack);
 end
