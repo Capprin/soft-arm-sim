@@ -4,7 +4,7 @@ function d_beta_stack = dynamics_fun(arm, control, beta_stack, t)
     %% setup
     n_params = numel(arm.geometry.joints);
     % get control signal
-    alpha_stack = control.control_fun(control, beta_stack, t);
+    alpha_stack = control.control_fun(arm, control, beta_stack, t);
     % generate state vectors
     q = [alpha_stack(1:n_params); beta_stack(1:n_params)];
     q_dot = [alpha_stack((n_params+1):2*n_params);...
@@ -30,7 +30,6 @@ function d_beta_stack = dynamics_fun(arm, control, beta_stack, t)
 
     %% generate output
     d_beta_stack = [beta_stack((n_params+1):2*n_params);...%beta vel
-                    res_stack(4:6);res_stack(1:3);...%originally [alpha_torque;beta_accel]
-                    zeros(n_params,1)];%set rotatum (time derivative) to zero
+                    res_stack(4:6);res_stack(1:3)];%originally [alpha_torque;beta_accel]
     d_beta_stack = double(d_beta_stack);
 end
